@@ -1,0 +1,19 @@
+  #caja{
+    position: relative;
+    margin: 0 auto;
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    color: #0083ca;
+    font-size: 35px;
+    line-height: 1.6em;
+    background-color: #fafafa;
+    box-shadow: 2px 5px 5px #ccc;
+    border-radius: 8px;
+  }
+#bombillo{
+    position:relative;
+    width:150px;
+    margin: 0 auto;
+    display:none;
+}

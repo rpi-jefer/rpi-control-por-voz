@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Reconocimiento de  Voz</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/estilos.css" />
+  <script src="js/jquery-1.10.1.min.js"></script>     
+</head>
+<body>
+
+ <script type="text/javascript">
+      var recognition = new SpeechRecognition();
+      recognition.maxAlternatives = 10;
+      recognition.onresult = function(event) {
+        if (event.results.length > 0) {
+          var result = event.results[0];
+          for (var i = 0; i < result.length; ++i) {
+            var text = result[i].transcript;
+            select.options[i] = new Option(text, text);
+          }
+        }
+      }
+
+      function start() {
+        select.options.length = 0;
+        recognition.start();
+      }
+    </script>
+
+    <select id="select"></select>
+    <button onclick="start()">Click to Speak</button>
+
+</body>
+</html>
+

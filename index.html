@@ -1,0 +1,54 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Reconocimiento de  Voz</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/estilos.css" />
+  <script src="js/jquery-1.10.1.min.js"></script>     
+</head>
+<body>
+<script type="text/javascript">
+function onChange(val) {
+  var valor = $("#entrada").val();
+  $("#caja").text(valor);
+  console.log("valor: "+valor);
+$.ajax({
+        type: "POST",
+        url: "procesa.php",
+        data: "valor="+valor,
+        success: function(datos){
+        console.log( "Salida: " + datos);
+          switch(datos)
+          {
+          case "1":
+             $("#bombillo").show('slow');
+             $("#caja").text('Encendido');
+             console.log("Encendido");
+            break;
+          case "2":
+             $("#bombillo").hide('slow');
+             $("#caja").text('Apagado');
+             console.log("Apagado");
+            break;
+          case "3":
+             $("#caja").text('Sigue Intentando');
+             $("#bombillo").hide('slow');
+             console.log("Sigue Intentando");  
+          break;
+          }
+        }
+});
+}
+</script>
+<h4>Control de un led a trav&eacute;s de voz</h4>
+<br>
+<div align="center">
+<input onwebkitspeechchange="onChange(this.value)" x-webkit-speech="undefined" style="font-size: 25px;" id="entrada" autofocus>
+</div>
+<br><br>
+<div id="bombillo"><img src="images/on.png"></div>
+<div id="caja">
+</div>
+</body>
+</html>
+
